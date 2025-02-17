@@ -6,14 +6,8 @@ import (
 	"nexacore/banking-system/db"
 )
 
-// Volatile data
-// This data will be lost when the program is restarted
-// This is where we will store the data for the banking system
-
-// var transactions = make([]models.Transaction, 0)
 func main() {
 
-	// var accountsStore = make([]models.Account, 0)
 	// Welcome message
 	fmt.Println("         Welcome To NexaCore         ")
 	fmt.Println("\"Your Financial Future, Connected.\"")
