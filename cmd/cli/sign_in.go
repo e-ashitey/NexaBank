@@ -1,20 +1,25 @@
 package cli
 
 import (
+	"bufio"
 	"fmt"
 	"nexacore/banking-system/db"
 	"nexacore/banking-system/internal/customer"
+	"os"
+	"strings"
 )
 
 func Auth() bool {
+	reader := bufio.NewReader(os.Stdin)
+
 	// Ask user for login details
 	fmt.Println("Enter Email:")
-	var email string
-	fmt.Scanln(&email)
+	email, _ := reader.ReadString('\n')
+	email = strings.TrimSpace(email)
 
 	fmt.Println("Enter Password:")
-	var password string
-	fmt.Scanln(&password)
+	password, _ := reader.ReadString('\n')
+	password = strings.TrimSpace(password)
 
 	// Call Customer Authenticate
 	var cust = customer.Authenticate(email, password)
