@@ -1,12 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
 	"nexacore/banking-system/cmd/cli"
 	"nexacore/banking-system/db"
 )
 
 func main() {
+	reader := bufio.NewReader(os.Stdin)
 
 	// Welcome message
 	fmt.Println("         Welcome To NexaCore         ")
@@ -19,11 +25,17 @@ func main() {
 		fmt.Println("Available Commands:")
 		fmt.Println("1. Sign In")
 		fmt.Println("2. Create Account")
-		fmt.Println("99. Exit")
+		fmt.Print("99. Exit\n\n")
 
 		// Get the command from the user
-		var command int
-		fmt.Scanln(&command)
+		commandStr, _ := reader.ReadString('\n')
+		commandStr = strings.TrimSpace(commandStr)
+
+		command, err := strconv.Atoi(commandStr)
+		if err != nil {
+			fmt.Print("Invalid Command\n\n")
+			continue
+		}
 
 		// Handle the command
 		switch command {
